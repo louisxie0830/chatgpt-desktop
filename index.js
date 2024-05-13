@@ -71,6 +71,10 @@ app.on("ready", () => {
 	mainWindow = createMainWindow();
 	const page = mainWindow.webContents;
 
+	app.setLoginItemSettings({
+        openAtLogin: true
+    });
+
 	page.on("dom-ready", () => {
 		page.insertCSS(
 			fs.readFileSync(path.join(__dirname, "browser.css"), "utf8")
