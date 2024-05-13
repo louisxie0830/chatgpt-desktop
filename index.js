@@ -2,9 +2,9 @@
 const path = require("path");
 const fs = require("fs");
 const electron = require("electron");
+const { app, BrowserWindow, Menu, shell } = electron;
 const config = require("./config");
 
-const app = electron.app;
 
 require("electron-debug")();
 require("electron-dl")();
@@ -15,7 +15,7 @@ let isQuitting = false;
 
 function createMainWindow() {
 	const lastWindowState = config.get("lastWindowState");
-	const win = new electron.BrowserWindow({
+	const win = new BrowserWindow({
 		title: app.getName(),
 		show: false,
 		x: lastWindowState.x,
@@ -84,7 +84,7 @@ app.on("ready", () => {
 
 	page.on("new-window", (e, url) => {
 		e.preventDefault();
-		electron.shell.openExternal(url);
+		shell.openExternal(url);
 	});
 
 	mainWindow.webContents.session.on("will-download", (event, item) => {
@@ -142,7 +142,7 @@ app.on("ready", () => {
 		},
 	];
 
-	electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(template));
+	Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 });
 
 app.on("window-all-closed", () => {
