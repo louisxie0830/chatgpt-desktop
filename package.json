@@ -1,0 +1,58 @@
+{
+  "name": "chatgpt-desktop",
+  "productName": "ChatGPT",
+  "desktopName": "ChatGPT",
+  "version": "0.0.1",
+  "description": "Unofficial ChatGPT desktop app",
+  "license": "MIT",
+  "author": {
+    "name": "Nil Xie",
+    "email": "bfgh2678@gmail.com"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "electronVersion": "30.0.3",
+  "scripts": {
+    "test": "xo --space",
+    "start": "electron .",
+    "build": "npm run build:macos && npm run build:linux && npm run build:windows",
+    "build:macos": "electron-packager . --overwrite --asar --out=dist --ignore='^media$' --prune --platform=darwin --arch=x64 --icon=static/Icon.icns --app-version=$npm_package_version && cd dist/ChatGPT-darwin-x64 && zip -ryXq9 ../ChatGPT-osx-${npm_package_version}.zip ChatGPT.app",
+    "build:linux": "electron-packager . --overwrite --out=dist --ignore='^media$' --prune --platform=linux --arch=x64 --icon=static/Icon.png --app-version=$npm_package_version && cd dist/ChatGPT-linux-x64/ && zip -ryq9 ../ChatGPT-linux-${npm_package_version}.zip *",
+    "build:windows": "electron-packager . --overwrite --asar --out=dist --ignore='^media$' --prune --platform=win32 --arch=ia32 --icon=static/Icon.ico --version-string.ProductName=$npm_package_productName --app-version=$npm_package_version && cd dist/ChatGPT-win32-ia32 && zip -ryq9 ../ChatGPT-windows-${npm_package_version}.zip *"
+  },
+  "files": [
+    "index.js",
+    "browser.js",
+    "browser.css",
+    "static/Icon.icns",
+    "static/Icon.png",
+    "static/Icon.ico"
+  ],
+  "keywords": [
+    "electron-app",
+    "ChatGPT"
+  ],
+  "dependencies": {
+    "electron-config": "^2.0.0",
+    "electron-context-menu": "^0.1.0",
+    "electron-debug": "^1.0.0",
+    "electron-dl": "^1.0.0"
+  },
+  "devDependencies": {
+    "electron": "^30.0.3",
+    "electron-packager": "^17.1.2",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ],
+    "rules": {
+      "import/no-extraneous-dependencies": 0
+    }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+}
