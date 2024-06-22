@@ -2,7 +2,7 @@
   "name": "chatgpt-desktop",
   "productName": "ChatGPT",
   "desktopName": "ChatGPT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Unofficial ChatGPT desktop app",
   "license": "MIT",
   "author": {
