@@ -25,6 +25,7 @@ function createMainWindow() {
 		icon:
 			process.platform === "linux" &&
 			path.join(__dirname, "static", "Icon.png"),
+		useContentSize: true,
 		minWidth: 400,
 		minHeight: 200,
 		titleBarStyle: "hidden-inset",
