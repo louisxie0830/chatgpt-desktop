@@ -68,6 +68,8 @@ function createMainWindow() {
 	return win;
 }
 
+app.disableHardwareAcceleration();
+
 app.on("ready", () => {
 	mainWindow = createMainWindow();
 	const page = mainWindow.webContents;
